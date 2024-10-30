@@ -1,0 +1,41 @@
+<div class="containter">
+    <!-- Header -->
+    <div class="header">
+        <h1>Task Manager</h1>
+    </div>
+
+     <!-- Notification Message -->
+    <p class="notification" *ngIf="tasks.length == 0">სამწუხაროდ დამატებული დავალებები არ მოიძებდა.</p>
+
+    <div class="task-list-div">
+        <ul class="task-list">
+            <li *ngFor="let task of tasks" class="task-item">
+                <div class="task-content">
+                    <span>{{ task.name }}</span>
+                </div>
+
+                <div class="task-actions">
+                    <button (click)="updateTask(task)">დასრულებულად მონიშვნა</button>
+                    <button (click)="deleteTask(task.id)">წაშლა</button>
+                </div>
+            </li>
+        </ul>
+    </div>
+
+    <!-- Task Form -->
+    <div class="task-form">
+        <div class="name">
+            <label>შეიყვანეთ დასახელება</label>
+            <input [(ngModel)]="newTask.name" placeholder="Enter name">
+        </div>
+        <div class="status">
+            <select id="taskStatus" [(ngModel)]="newTask.isComplete">
+                <option [value]="undefined" disabled>აირჩიეთ დავალების სტატუსი</option>
+                <option [value]="true">დასრულებული</option>
+                <option [value]="false">პროგრესშია</option>
+            </select>
+        </div>
+
+        <button (click)="createTask()">დამატება</button>
+    </div>
+</div>
